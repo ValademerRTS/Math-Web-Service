@@ -1,16 +1,19 @@
-def add(a, b):
-    return a + b
+import math
 
-def subtract(a, b):
-    return a - b
 
-def multiply(a, b):
-    return a * b
+def solve_quadratic(a, b, c):
+    """Решение квадратного уравнения ax² + bx + c = 0"""
+    if a == 0:
+        return "Ошибка: коэффициент 'a' не может быть равен нулю"
 
-def divide(a, b):
-    if b == 0:
-        return "Ошибка: деление на ноль"
-    return a / b
+    discriminant = b ** 2 - 4 * a * c
 
-def power(a, b):
-    return a ** b
+    if discriminant > 0:
+        x1 = (-b + math.sqrt(discriminant)) / (2 * a)
+        x2 = (-b - math.sqrt(discriminant)) / (2 * a)
+        return round(x1, 4), round(x2, 4)
+    elif discriminant == 0:
+        x = -b / (2 * a)
+        return round(x, 4),
+    else:
+        return "Нет вещественных корней (D < 0)"

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Калькулятор</h1>
+
+<nav>
+    <a href="/arifmetic">Арифметика</a>
+    <a href="/geometry">Геометрия</a>
+    <a href="/algebra">Алгебра</a>
+</nav>
+
+<hr>
+
+{% if section == 'arifmetic' %}
+
+<h2>Арифметика</h2>
+<form method="POST" action="/arifmetic">
+    <p>Число A: <input type="number" name="a" step="any" required></p>
+    <p>Число B: <input type="number" name="b" step="any" required></p>
+    <p>Операция:
+        <select name="operation">
+            <option value="add">A + B</option>
+            <option value="subtract">A - B</option>
+            <option value="multiply">A * B</option>
+            <option value="divide">A / B</option>
+            <option value="power">A ^ B</option>
+        </select>
+    </p>
+    <button type="submit">Вычислить</button>
+</form>
+{% if result is not none %}
+<p><b>Результат: {{ result }}</b></p>
+{% endif %}
+
+{% elif section == 'geometry' %}
+
+<h2>Геометрия</h2>
+<form method="POST" action="/geometry">
+    <p>Фигура:
+        <select name="figure" id="figure" onchange="updateFields()">
+            <option value="circle">Круг</option>
+            <option value="square">Квадрат</option>
+            <option value="rectangle">Прямоугольник</option>
+            <option value="parallelogram">Параллелограмм</option>
+        </select>
+    </p>
+    <p>Что вычислить:
+        <select name="calc">
+            <option value="area">Площадь</option>
+            <option value="perimeter">Периметр</option>
+        </select>
+    </p>
+
+    <div id="field-r">
+        <p>Радиус: <input type="number" name="r" step="any"></p>
+    </div>
+
+    <div id="field-a" style="display:none">
+        <p>Сторона: <input type="number" name="a" step="any" disabled></p>
+    </div>
+
+    <div id="field-ab" style="display:none">
+        <p>Сторона A / Основание: <input type="number" name="a" step="any" disabled></p>
+        <p>Сторона B / Высота: <input type="number" name="b" step="any" disabled></p>
+    </div>
+
+    <button type="submit">Вычислить</button>
+</form>
+
+<script>
+function updateFields() {
+    var fig = document.getElementById('figure').value;
+    var isCircle = (fig === 'circle');
+    var isSquare = (fig === 'square');
+    var isRectOrPara = (fig === 'rectangle' || fig === 'parallelogram');
+
+    // Круг
+    var blockR = document.getElementById('field-r');
+    blockR.style.display = isCircle ? '' : 'none';
+    blockR.querySelector('input').disabled = !isCircle;
+
+    var blockA = document.getElementById('field-a');
+    blockA.style.display = isSquare ? '' : 'none';
+    blockA.querySelector('input').disabled = !isSquare;
+
+    var blockAB = document.getElementById('field-ab');
+    blockAB.style.display = isRectOrPara ? '' : 'none';
+    var inputsAB = blockAB.querySelectorAll('input');
+    inputsAB.forEach(function(input) {
+        input.disabled = !isRectOrPara;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', updateFields);
+</script>
+
+{% if result is not none %}
+<p><b>Результат: {{ result }}</b></p>
+{% endif %}
+
+{% elif section == 'algebra' %}
+
+<h2>Алгебра — квадратное уравнение</h2>
+<p>ax² + bx + c = 0</p>
+<form method="POST" action="/algebra">
+    <p>a: <input type="number" name="a" step="any" required></p>
+    <p>b: <input type="number" name="b" step="any" required></p>
+    <p>c: <input type="number" name="c" step="any" required></p>
+    <button type="submit">Решить</button>
+</form>
+{% if result is not none %}
+<p><b>{{ result }}</b></p>
+{% endif %}
+
+{% else %}
+
+<p>Выберите раздел выше.</p>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: blue;
+}
+
+input, select, button {
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  padding: 12px 24px;
+}

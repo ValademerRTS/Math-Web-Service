@@ -1,37 +1,143 @@
+"""Модуль геометрических вычислений для плоских фигур."""
+
 import math
 
 
-# Круг
-def circle_area(r):
+def circle_area(r: float) -> float:
+    """
+    Вычисляет площадь круга по его радиусу.
+
+    Параметры:
+        r (float): Радиус круга.
+
+    Возвращаемое значение:
+        float: Площадь круга, округлённая до 4 знаков.
+
+    Пример вызова:
+        >>> circle_area(3)
+        28.2743
+    """
     return round(math.pi * r ** 2, 4)
 
 
-def circle_perimeter(r):
+def circle_perimeter(r: float) -> float:
+    """
+    Вычисляет длину окружности по её радиусу.
+
+    Параметры:
+        r (float): Радиус круга.
+
+    Возвращаемое значение:
+        float: Длина окружности, округлённая до 4 знаков.
+
+    Пример вызова:
+        >>> circle_perimeter(3)
+        18.8496
+    """
     return round(2 * math.pi * r, 4)
 
 
-# Квадрат
-def square_area(a):
+def square_area(a: float) -> float:
+    """
+    Вычисляет площадь квадрата по длине стороны.
+
+    Параметры:
+        a (float): Сторона квадрата.
+
+    Возвращаемое значение:
+        float: Площадь квадрата.
+
+    Пример вызова:
+        >>> square_area(4)
+        16
+    """
     return a ** 2
 
 
-def square_perimeter(a):
+def square_perimeter(a: float) -> float:
+    """
+    Вычисляет периметр квадрата по длине стороны.
+
+    Параметры:
+        a (float): Сторона квадрата.
+
+    Возвращаемое значение:
+        float: Периметр квадрата.
+
+    Пример вызова:
+        >>> square_perimeter(4)
+        16
+    """
     return 4 * a
 
 
-# Прямоугольник
-def rectangle_area(a, b):
+def rectangle_area(a: float, b: float) -> float:
+    """
+    Вычисляет площадь прямоугольника по двум сторонам.
+
+    Параметры:
+        a (float): Первая сторона.
+        b (float): Вторая сторона.
+
+    Возвращаемое значение:
+        float: Площадь прямоугольника.
+
+    Пример вызова:
+        >>> rectangle_area(3, 5)
+        15
+    """
     return a * b
 
 
-def rectangle_perimeter(a, b):
+def rectangle_perimeter(a: float, b: float) -> float:
+    """
+    Вычисляет периметр прямоугольника по двум сторонам.
+
+    Параметры:
+        a (float): Длина первой стороны.
+        b (float): Длина второй стороны.
+
+    Возвращаемое значение:
+        float: Периметр прямоугольника.
+
+    Пример вызова:
+        >>> rectangle_perimeter(3, 5)
+        16
+    """
     return 2 * (a + b)
 
 
-# Параллелограмм
-def parallelogram_area(base, height):
+def parallelogram_area(base: float, height: float) -> float:
+    """
+    Вычисляет площадь параллелограмма по основанию и высоте.
+
+    Параметры:
+        base (float): Длина основания.
+        height (float): Высота, опущенная на основание.
+
+    Возвращаемое значение:
+        float: Площадь параллелограмма.
+
+    Пример вызова:
+        >>> parallelogram_area(6, 4)
+        24
+    """
     return base * height
 
 
-def parallelogram_perimeter(a, b):
+def parallelogram_perimeter(a: float, b: float) -> float:
+    """
+    Вычисляет периметр параллелограмма по двум смежным сторонам.
+
+    Параметры:
+        a (float): Длина первой стороны.
+        b (float): Длина второй стороны.
+
+    Возвращаемое значение:
+        float: Периметр параллелограмма.
+
+    Пример вызова:
+        >>> parallelogram_perimeter(6, 4)
+        20
+    """
     return 2 * (a + b)
